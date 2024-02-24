@@ -3,7 +3,6 @@ import AppContext from "./appcontext.jsx";
 import { useState, useEffect } from "react";
 import axios from "axios";
 const AppState = (props) => {
-  const [data, setData] = useState([]);
   //*All Least of items
   const [end_year, setEndyear] = useState([]);
   const [topic, setTopic] = useState([]);
@@ -20,15 +19,13 @@ const AppState = (props) => {
   const [SelectedPestle, setSelectedPestle] = useState([]);
   const [SelectedSource, setSelectedSource] = useState([]);
   const [SelectedCountry, setSelectedCountry] = useState([]);
+  //* All Data
+  const [data, setData] = useState([]);
+
+  //* Filtered data
+  const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
-    console.log(end_year);
-    console.log(topic);
-    console.log(sector);
-    console.log(region);
-    console.log(pestle);
-    console.log(source);
-    console.log(country);
     console.log("this are the selected years", SelectedendYears);
     console.log("this are the selected topics", SelectedTopic);
     console.log("this are the selected sectors", SelectedSector);
@@ -36,6 +33,7 @@ const AppState = (props) => {
     console.log("this are the selected pestles", SelectedPestle);
     console.log("this are the selected sources", SelectedSource);
     console.log("this are the selected countries", SelectedCountry);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     end_year,
     topic,
@@ -108,6 +106,26 @@ const AppState = (props) => {
     }
   };
 
+  //* Filter data based on the selected options
+  //* and storing it into the data
+  const filter = async () => {
+    try {
+      const FilteredDataBasedOnEndYear = data.filter((item) =>
+        SelectedendYears.includes(item.end_year)
+      );
+
+      setFilteredData((prevFilteredData) => {
+        const uniqueValuesSet = new Set([
+          ...prevFilteredData,
+          ...FilteredDataBasedOnEndYear,
+        ]);
+        return Array.from(uniqueValuesSet);
+      });
+    } catch (error) {
+      console.error("Error filtering data:", error);
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -141,6 +159,8 @@ const AppState = (props) => {
         setPestle,
         setSource,
         setCountry,
+        filter,
+        filteredData,
       }}
     >
       {props.children}

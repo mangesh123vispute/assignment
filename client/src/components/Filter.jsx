@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import AppContext from "../context/appcontext.jsx";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 const Filter = (props) => {
   const context = useContext(AppContext);
@@ -13,47 +13,74 @@ const Filter = (props) => {
     setSelectedPestle,
     setSelectedSource,
     setSelectedCountry,
+    SelectedendYears,
+    SelectedTopic,
+    SelectedSector,
+    SelectedRegion,
+    SelectedPestle,
+    SelectedSource,
+    SelectedCountry,
+    filter,
+    filteredData,
   } = context;
+  useEffect(() => {
+    filter();
+    console.log("this is filtered data", filteredData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    SelectedendYears,
+    SelectedTopic,
+    SelectedSector,
+    SelectedRegion,
+    SelectedPestle,
+    SelectedSource,
+    SelectedCountry,
+  ]);
 
   const handleItemClick = (item) => {
     switch (type) {
       case "year":
-        setSelectedendYear((prevSelectedYears) => [...prevSelectedYears, item]);
+        setSelectedendYear((prevSelectedYears) => {
+          const uniqueYears = new Set([...prevSelectedYears, item]);
+          return [...uniqueYears];
+        });
         break;
       case "topic":
-        setSelectedTopic((prevSelectedTopics) => [...prevSelectedTopics, item]);
+        setSelectedTopic((prevSelectedTopics) => {
+          const uniqueTopics = new Set([...prevSelectedTopics, item]);
+          return [...uniqueTopics];
+        });
         break;
       case "sector":
-        setSelectedSector((prevSelectedSectors) => [
-          ...prevSelectedSectors,
-          item,
-        ]);
+        setSelectedSector((prevSelectedSectors) => {
+          const uniqueSectors = new Set([...prevSelectedSectors, item]);
+          return [...uniqueSectors];
+        });
         break;
       case "region":
-        setSelectedRegion((prevSelectedRegions) => [
-          ...prevSelectedRegions,
-          item,
-        ]);
+        setSelectedRegion((prevSelectedRegions) => {
+          const uniqueRegions = new Set([...prevSelectedRegions, item]);
+          return [...uniqueRegions];
+        });
         break;
       case "pestle":
-        setSelectedPestle((prevSelectedPestles) => [
-          ...prevSelectedPestles,
-          item,
-        ]);
+        setSelectedPestle((prevSelectedPestles) => {
+          const uniquePestles = new Set([...prevSelectedPestles, item]);
+          return [...uniquePestles];
+        });
         break;
       case "source":
-        setSelectedSource((prevSelectedSources) => [
-          ...prevSelectedSources,
-          item,
-        ]);
+        setSelectedSource((prevSelectedSources) => {
+          const uniqueSources = new Set([...prevSelectedSources, item]);
+          return [...uniqueSources];
+        });
         break;
       case "country":
-        setSelectedCountry((prevSelectedCountries) => [
-          ...prevSelectedCountries,
-          item,
-        ]);
+        setSelectedCountry((prevSelectedCountries) => {
+          const uniqueCountries = new Set([...prevSelectedCountries, item]);
+          return [...uniqueCountries];
+        });
         break;
-
       default:
         alert("Please select correct option");
         break;
