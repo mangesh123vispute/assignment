@@ -62,7 +62,7 @@ const ScatterChart = (props) => {
               color: "rgba(0, 0, 0, 0.8)",
             },
             min: 0,
-            max: 10,
+            max: 20,
             grid: {
               color: "rgba(0, 0, 0, 0.1)",
             },

@@ -2,6 +2,7 @@ import { useEffect, useContext } from "react";
 import AppContext from "../context/appcontext.jsx";
 import ScatterChart from "./Graph";
 import RadarChart from "./Radar";
+import Filter from "./Filter.jsx";
 
 const Dashboard = () => {
   const context = useContext(AppContext);
@@ -16,8 +17,9 @@ const Dashboard = () => {
   return (
     <div>
       <div>
-        <ScatterChart data={data} />
-        <RadarChart data={data} />
+        <Filter />
+        {/* <ScatterChart data={data} /> */}
+        {/* <RadarChart data={data} /> */}
       </div>
     </div>
   );
