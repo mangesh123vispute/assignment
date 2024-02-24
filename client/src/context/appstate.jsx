@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 const AppState = (props) => {
   const [data, setData] = useState([]);
+  //*All Least of items
   const [end_year, setEndyear] = useState([]);
   const [topic, setTopic] = useState([]);
   const [sector, setSector] = useState([]);
@@ -11,6 +12,14 @@ const AppState = (props) => {
   const [pestle, setPestle] = useState([]);
   const [source, setSource] = useState([]);
   const [country, setCountry] = useState([]);
+  //* Selected Items to filter
+  const [SelectedendYears, setSelectedendYear] = useState([]);
+  const [SelectedTopic, setSelectedTopic] = useState([]);
+  const [SelectedSector, setSelectedSector] = useState([]);
+  const [SelectedRegion, setSelectedRegion] = useState([]);
+  const [SelectedPestle, setSelectedPestle] = useState([]);
+  const [SelectedSource, setSelectedSource] = useState([]);
+  const [SelectedCountry, setSelectedCountry] = useState([]);
 
   useEffect(() => {
     console.log(end_year);
@@ -20,7 +29,29 @@ const AppState = (props) => {
     console.log(pestle);
     console.log(source);
     console.log(country);
-  }, [end_year, topic, sector, region, pestle, source, country]);
+    console.log("this are the selected years", SelectedendYears);
+    console.log("this are the selected topics", SelectedTopic);
+    console.log("this are the selected sectors", SelectedSector);
+    console.log("this are the selected regions", SelectedRegion);
+    console.log("this are the selected pestles", SelectedPestle);
+    console.log("this are the selected sources", SelectedSource);
+    console.log("this are the selected countries", SelectedCountry);
+  }, [
+    end_year,
+    topic,
+    sector,
+    region,
+    pestle,
+    source,
+    country,
+    SelectedendYears,
+    SelectedTopic,
+    SelectedSector,
+    SelectedRegion,
+    SelectedPestle,
+    SelectedSource,
+    SelectedCountry,
+  ]);
 
   //*Fetching The Data From The Backend,
   //to set the fields in the filter
@@ -42,7 +73,7 @@ const AppState = (props) => {
     try {
       const response = await axios.get("http://localhost:5000/api/data");
       const fetchedData = response.data;
-      console.log(fetchedData);
+
       setData(fetchedData);
 
       const endYearArray = fetchedData.map((item) => item.end_year);
@@ -72,8 +103,6 @@ const AppState = (props) => {
       const countryArray = fetchedData.map((item) => item.country);
       const filteredSet7 = new Set(countryArray.filter((item) => item !== ""));
       setCountry([...filteredSet7]);
-
-      console.log("Data fetched successfully:", end_year);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -91,6 +120,27 @@ const AppState = (props) => {
         pestle,
         source,
         country,
+        SelectedendYears,
+        SelectedTopic,
+        SelectedSector,
+        SelectedRegion,
+        SelectedPestle,
+        SelectedSource,
+        SelectedCountry,
+        setSelectedendYear,
+        setSelectedTopic,
+        setSelectedSector,
+        setSelectedRegion,
+        setSelectedPestle,
+        setSelectedSource,
+        setSelectedCountry,
+        setEndyear,
+        setTopic,
+        setSector,
+        setRegion,
+        setPestle,
+        setSource,
+        setCountry,
       }}
     >
       {props.children}
