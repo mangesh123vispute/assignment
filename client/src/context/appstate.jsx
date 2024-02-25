@@ -11,6 +11,7 @@ const AppState = (props) => {
   const [pestle, setPestle] = useState([]);
   const [source, setSource] = useState([]);
   const [country, setCountry] = useState([]);
+
   //* Selected Items to filter
   const [SelectedendYears, setSelectedendYear] = useState([]);
   const [SelectedTopic, setSelectedTopic] = useState([]);
@@ -25,31 +26,19 @@ const AppState = (props) => {
   //* Filtered data
   const [filteredData, setFilteredData] = useState([]);
 
+  //* selected item
+  const [selectedItem, setSelectedItem] = useState({});
+
+  // * intencity , likelihood , relevance in percentage
+  const [intensityPercentage, setIntensityPercentage] = useState();
+  const [likelihoodPercentage, setLikelihoodPercentage] = useState();
+  const [relevancePercentage, setRelevancePercentage] = useState();
+
   useEffect(() => {
-    console.log("this are the selected years", SelectedendYears);
-    console.log("this are the selected topics", SelectedTopic);
-    console.log("this are the selected sectors", SelectedSector);
-    console.log("this are the selected regions", SelectedRegion);
-    console.log("this are the selected pestles", SelectedPestle);
-    console.log("this are the selected sources", SelectedSource);
-    console.log("this are the selected countries", SelectedCountry);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    end_year,
-    topic,
-    sector,
-    region,
-    pestle,
-    source,
-    country,
-    SelectedendYears,
-    SelectedTopic,
-    SelectedSector,
-    SelectedRegion,
-    SelectedPestle,
-    SelectedSource,
-    SelectedCountry,
-  ]);
+    setIntensityPercentage((selectedItem.intensity / 97) * 100);
+    setLikelihoodPercentage((selectedItem.likelihood / 4) * 100);
+    setRelevancePercentage((selectedItem.relevance / 7) * 100);
+  }, [selectedItem]);
 
   //*Fetching The Data From The Backend,
   //to set the fields in the filter
@@ -187,6 +176,11 @@ const AppState = (props) => {
         setCountry,
         filter,
         filteredData,
+        setSelectedItem,
+        selectedItem,
+        intensityPercentage,
+        likelihoodPercentage,
+        relevancePercentage,
       }}
     >
       {props.children}

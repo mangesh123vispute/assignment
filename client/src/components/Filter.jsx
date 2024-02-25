@@ -21,8 +21,8 @@ const Filter = (props) => {
     SelectedSource,
     SelectedCountry,
     filter,
-    filteredData,
   } = context;
+
   useEffect(() => {
     filter();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -38,7 +38,7 @@ const Filter = (props) => {
 
   const handleItemClick = (item) => {
     switch (type) {
-      case "year":
+      case "Endyear":
         setSelectedendYear((prevSelectedYears) => {
           const uniqueYears = new Set([...prevSelectedYears, item]);
           return [...uniqueYears];
@@ -108,13 +108,22 @@ const Filter = (props) => {
                 href="#"
                 onClick={() => handleItemClick(item)}
               >
-                {item}
+                <span
+                  style={{
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                    maxWidth: "150px",
+                    display: "inline-block",
+                  }}
+                >
+                  {item}
+                </span>
               </a>
             </li>
           ))}
         </ul>
       </div>
-      {console.log("Data is filtered", filteredData)}
     </>
   );
 };

@@ -1,14 +1,12 @@
 import { useEffect, useContext } from "react";
 import AppContext from "../context/appcontext.jsx";
-// import ScatterChart from "./Graph";
-// import RadarChart from "./Radar";
 import Filter from "./Filter.jsx";
+import BarChart from "./Barchart.jsx";
 
 const Dashboard = () => {
   const context = useContext(AppContext);
 
   const {
-    data,
     getDatainArray,
     end_year,
     topic,
@@ -17,6 +15,7 @@ const Dashboard = () => {
     pestle,
     source,
     country,
+    titleArray,
   } = context;
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -36,13 +35,15 @@ const Dashboard = () => {
           marginBottom: "10px",
         }}
       >
-        <Filter option={end_year} type="year" />
+        <Filter option={end_year} type="Endyear" />
         <Filter option={topic} type="topic" />
         <Filter option={sector} type="sector" />
         <Filter option={region} type="region" />
         <Filter option={pestle} type="pestle" />
         <Filter option={source} type="source" />
         <Filter option={country} type="country" />
+
+        <BarChart />
 
         {/* <ScatterChart data={data} /> */}
       </div>

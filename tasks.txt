@@ -2,9 +2,10 @@ Task to complete:
 1.create data visualization dashboard 
 2.create chart for the visualization dashboard, chart.js
 3.interactive charts..
-4.Add filters in the dashboard 
+
 5.correct the backend
 
 
 
 Done:
+4.Add filters in the dashboard 
