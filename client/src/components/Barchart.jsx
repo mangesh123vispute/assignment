@@ -59,7 +59,6 @@ const BarChart = () => {
       options: options,
     });
 
-    // Cleanup chart on component unmount
     return () => {
       myChart.destroy();
     };
@@ -79,11 +78,27 @@ const BarChart = () => {
           padding: "20px",
         }}
       >
-        <p
+        <div
           style={{ fontSize: "18px", fontWeight: "bold", marginBottom: "10px" }}
         >
-          {selectedItem.title}
-        </p>
+          Title:{" "}
+          {selectedItem.title
+            ? selectedItem.title
+            : "No Title ,Select an item first"}
+          <p
+            style={{
+              fontSize: "14px",
+              fontWeight: "bold",
+              marginTop: "10px",
+              marginBottom: "10px",
+              color: "blue",
+            }}
+          >
+            StartYear:{" "}
+            {selectedItem.start_year ? selectedItem.start_year : "Null"} <br />{" "}
+            EndYear : {selectedItem.end_year ? selectedItem.end_year : "Null"}{" "}
+          </p>
+        </div>
         <div>
           <canvas
             ref={chartRef}

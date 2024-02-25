@@ -25,6 +25,7 @@ const Filter = (props) => {
 
   useEffect(() => {
     filter();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     SelectedendYears,

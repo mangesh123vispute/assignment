@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import AppContext from "./appcontext.jsx";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 const AppState = (props) => {
-  //*All Least of items
+  //* All Least of items
   const [end_year, setEndyear] = useState([]);
   const [topic, setTopic] = useState([]);
   const [sector, setSector] = useState([]);
@@ -29,18 +29,27 @@ const AppState = (props) => {
   //* selected item
   const [selectedItem, setSelectedItem] = useState({});
 
-  // * intencity , likelihood , relevance in percentage
-  const [intensityPercentage, setIntensityPercentage] = useState();
-  const [likelihoodPercentage, setLikelihoodPercentage] = useState();
-  const [relevancePercentage, setRelevancePercentage] = useState();
+  //* topicleastAlongwihFrequency
+  const [topicleastAlongwihFrequency, setTopicleastAlongwihFrequency] =
+    useState({});
 
-  useEffect(() => {
-    setIntensityPercentage((selectedItem.intensity / 97) * 100);
-    setLikelihoodPercentage((selectedItem.likelihood / 4) * 100);
-    setRelevancePercentage((selectedItem.relevance / 7) * 100);
-  }, [selectedItem]);
+  const generateTopicFrequency = () => {
+    const topicFrequency = {};
 
-  //*Fetching The Data From The Backend,
+    filteredData.forEach((item) => {
+      const { topic } = item;
+
+      if (topic && !Object.keys(topicFrequency).includes(topic)) {
+        topicFrequency[topic] = 1;
+      } else if (topic) {
+        topicFrequency[topic]++;
+      }
+    });
+
+    setTopicleastAlongwihFrequency(topicFrequency);
+  };
+
+  // & Fetching The Data From The Backend,
   //to set the fields in the filter
   //data begin fatched ,
 
@@ -54,7 +63,7 @@ const AppState = (props) => {
   //country
   //city
 
-  //* and storing it into the array
+  //& and storing it into the array
 
   const getDatainArray = async () => {
     try {
@@ -95,8 +104,8 @@ const AppState = (props) => {
     }
   };
 
-  //* Filter data based on the selected options
-  //* and storing it into the data
+  //& Filter data based on the selected options
+  //& and storing it into the data
   const filter = async () => {
     try {
       const FilteredDataBasedOnEndYear = data.filter((item) =>
@@ -178,9 +187,9 @@ const AppState = (props) => {
         filteredData,
         setSelectedItem,
         selectedItem,
-        intensityPercentage,
-        likelihoodPercentage,
-        relevancePercentage,
+        topicleastAlongwihFrequency,
+        setTopicleastAlongwihFrequency,
+        generateTopicFrequency,
       }}
     >
       {props.children}

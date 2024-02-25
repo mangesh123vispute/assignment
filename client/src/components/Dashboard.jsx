@@ -2,6 +2,7 @@ import { useEffect, useContext } from "react";
 import AppContext from "../context/appcontext.jsx";
 import Filter from "./Filter.jsx";
 import BarChart from "./Barchart.jsx";
+import DoughnutChart from "./Doughnut.jsx";
 
 const Dashboard = () => {
   const context = useContext(AppContext);
@@ -15,13 +16,15 @@ const Dashboard = () => {
     pestle,
     source,
     country,
-    titleArray,
+    filteredData,
+    generateTopicFrequency,
   } = context;
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     getDatainArray();
-  }, []);
+    generateTopicFrequency();
+  }, [filteredData]);
 
   return (
     <div>
@@ -44,6 +47,8 @@ const Dashboard = () => {
         <Filter option={country} type="country" />
 
         <BarChart />
+
+        <DoughnutChart />
 
         {/* <ScatterChart data={data} /> */}
       </div>
