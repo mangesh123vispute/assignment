@@ -114,10 +114,36 @@ const AppState = (props) => {
         SelectedendYears.includes(item.end_year)
       );
 
+      const FilteredDataBasedOnTopic = data.filter((item) =>
+        SelectedTopic.includes(item.topic)
+      );
+      const FilteredDataBasedOnSector = data.filter((item) =>
+        SelectedSector.includes(item.sector)
+      );
+      const FilteredDataBasedOnRegion = data.filter((item) =>
+        SelectedRegion.includes(item.region)
+      );
+      const FilteredDataBasedOnPestle = data.filter((item) =>
+        SelectedPestle.includes(item.pestle)
+      );
+      const FilteredDataBasedOnSource = data.filter((item) =>
+        SelectedSource.includes(item.source)
+      );
+
+      const FilteredDataBasedOnCountry = data.filter((item) =>
+        SelectedCountry.includes(item.country)
+      );
+
       setFilteredData((prevFilteredData) => {
         const uniqueValuesSet = new Set([
           ...prevFilteredData,
           ...FilteredDataBasedOnEndYear,
+          ...FilteredDataBasedOnTopic,
+          ...FilteredDataBasedOnSector,
+          ...FilteredDataBasedOnRegion,
+          ...FilteredDataBasedOnPestle,
+          ...FilteredDataBasedOnSource,
+          ...FilteredDataBasedOnCountry,
         ]);
         return Array.from(uniqueValuesSet);
       });

@@ -25,7 +25,6 @@ const Filter = (props) => {
   } = context;
   useEffect(() => {
     filter();
-    console.log("this is filtered data", filteredData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     SelectedendYears,
@@ -115,6 +114,7 @@ const Filter = (props) => {
           ))}
         </ul>
       </div>
+      {console.log("Data is filtered", filteredData)}
     </>
   );
 };
