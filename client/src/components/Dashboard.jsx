@@ -3,7 +3,8 @@ import AppContext from "../context/appcontext.jsx";
 import Filter from "./Filter.jsx";
 import BarChart from "./Barchart.jsx";
 import DoughnutChart from "./Doughnut.jsx";
-import WorldMap from "./Scatter.jsx";
+import WorldMap from "./WorldMap.jsx";
+import PieChart from "./PieChart.jsx";
 
 const Dashboard = () => {
   const context = useContext(AppContext);
@@ -46,8 +47,10 @@ const Dashboard = () => {
         <Filter option={pestle} type="pestle" />
         <Filter option={source} type="source" />
         <Filter option={country} type="country" />
+        {console.log("country", country)}
 
         <BarChart />
+        <PieChart />
 
         <DoughnutChart />
         <WorldMap />
