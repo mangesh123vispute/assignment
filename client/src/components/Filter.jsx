@@ -89,7 +89,7 @@ const Filter = (props) => {
 
   return (
     <>
-      <div className="dropdown">
+      <div className="dropdown " style={{ display: "flex" }}>
         <button
           className="btn btn-secondary dropdown-toggle"
           type="button"

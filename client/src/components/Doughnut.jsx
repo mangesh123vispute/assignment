@@ -49,8 +49,8 @@ const DoughnutChart = () => {
   return (
     <div
       style={{
-        width: "50%",
-        height: "50%",
+        width: "auto",
+        height: "auto",
         border: "1px solid #ccc",
         padding: "10px",
         margin: "10px",

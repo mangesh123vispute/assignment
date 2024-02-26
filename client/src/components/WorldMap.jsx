@@ -83,6 +83,7 @@ const WorldMap = () => {
       width="800"
       height="500"
       viewBox="0 0 800 500"
+      style={{ border: "1px solid #ccc", borderRadius: "5px", padding: "20px" }}
     ></svg>
   );
 };

@@ -68,9 +68,13 @@ const BarChart = () => {
   return (
     <>
       <Search />
+      <br />
+      <br />
+      <br />
+      <br />
       <div
         style={{
-          maxWidth: "600px",
+          maxWidth: "1000px",
           margin: "auto",
           textAlign: "center",
           border: "1px solid #ccc",

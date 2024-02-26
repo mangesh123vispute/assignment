@@ -8,6 +8,7 @@ import PieChart from "./PieChart.jsx";
 
 const Dashboard = () => {
   const context = useContext(AppContext);
+
   const {
     getDatainArray,
     end_year,
@@ -20,9 +21,11 @@ const Dashboard = () => {
     filteredData,
     generateTopicFrequency,
     generateCountryFrequency,
+    countryLeastAlongwihFrequency,
     generateRegionFrequency,
   } = context;
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     getDatainArray();
     generateTopicFrequency();
@@ -31,25 +34,17 @@ const Dashboard = () => {
   }, [filteredData]);
 
   return (
-    <div
-      className="container"
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        flexDirection: "row",
-      }}
-    >
+    <div>
       <div
         style={{
           display: "flex",
           gap: "20px",
+          justifyContent: "center",
           flexWrap: "wrap",
-          flexDirection: "column",
-          alignItems: "center",
-          marginRight: "100px",
+          marginTop: "10px",
+          marginBottom: "10px",
         }}
       >
-        <h2>Filters</h2>
         <Filter option={end_year} type="Endyear" />
         <Filter option={topic} type="topic" />
         <Filter option={sector} type="sector" />
@@ -57,39 +52,16 @@ const Dashboard = () => {
         <Filter option={pestle} type="pestle" />
         <Filter option={source} type="source" />
         <Filter option={country} type="country" />
-      </div>
-      <div>
+        {console.log(
+          "countryLeastAlongwihFrequency",
+          countryLeastAlongwihFrequency
+        )}
+
         <BarChart />
-        <br />
-        <br />
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            gap: "100px",
-            alignItems: "center",
-            flexWrap: "wrap",
-            marginTop: "50px",
-            marginBottom: "50px",
-            marginRight: "180px",
-          }}
-        >
-          <PieChart />
-          <DoughnutChart />
-        </div>
-        <br />
-        <br />
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "200px",
-          }}
-        >
-          <WorldMap />
-        </div>
+        <PieChart />
+
+        <DoughnutChart />
+        <WorldMap />
       </div>
     </div>
   );

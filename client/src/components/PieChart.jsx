@@ -22,7 +22,17 @@ const PieChart = () => {
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div
+      style={{
+        textAlign: "center",
+        height: "auto",
+        width: "auto",
+        margin: "auto",
+        border: "1px solid #ccc",
+        borderRadius: "5px",
+        padding: "20px",
+      }}
+    >
       <h2>Region</h2>
       <Pie data={data} />
     </div>
