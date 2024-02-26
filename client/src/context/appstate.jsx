@@ -36,6 +36,10 @@ const AppState = (props) => {
   const [countryLeastAlongwihFrequency, setCountryLeastAlongwihFrequency] =
     useState({});
 
+  //* Region along with the frequency from the filtered data
+  const [regionLeastAlongwihFrequency, setRegionLeastAlongwihFrequency] =
+    useState({});
+
   useEffect(() => {
     const selectedCities = [];
 
@@ -140,7 +144,21 @@ const AppState = (props) => {
 
     setTopicleastAlongwihFrequency(topicFrequency);
   };
+  const generateRegionFrequency = () => {
+    const regionFrequency = {};
 
+    filteredData.forEach((item) => {
+      const { region } = item;
+
+      if (region && !Object.keys(regionFrequency).includes(region)) {
+        regionFrequency[region] = 1;
+      } else if (region) {
+        regionFrequency[region]++;
+      }
+    });
+
+    setRegionLeastAlongwihFrequency(regionFrequency);
+  };
   const generateCountryFrequency = () => {
     const countryFrequency = {};
 
@@ -302,6 +320,8 @@ const AppState = (props) => {
         countryLeastAlongwihFrequency,
         countryLongitudeAndLogitude,
         SelectedCountryLongitudeAndLogitude,
+        generateRegionFrequency,
+        regionLeastAlongwihFrequency,
       }}
     >
       {props.children}

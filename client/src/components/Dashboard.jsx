@@ -22,6 +22,7 @@ const Dashboard = () => {
     generateTopicFrequency,
     generateCountryFrequency,
     countryLeastAlongwihFrequency,
+    generateRegionFrequency,
   } = context;
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -29,6 +30,7 @@ const Dashboard = () => {
     getDatainArray();
     generateTopicFrequency();
     generateCountryFrequency();
+    generateRegionFrequency();
   }, [filteredData]);
 
   return (

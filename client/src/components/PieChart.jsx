@@ -1,14 +1,20 @@
 // PieChart.js
 
 import { Pie } from "react-chartjs-2";
+import AppContext from "../context/appcontext.jsx";
+import { useContext } from "react";
 
 const PieChart = () => {
+  const context = useContext(AppContext);
+  const { regionLeastAlongwihFrequency } = context;
+  console.log("regionLeastAlongwihFrequency", regionLeastAlongwihFrequency);
+
   // Sample data for the pie chart
   const data = {
-    labels: ["Label 1", "Label 2", "Label 3"],
+    labels: Object.keys(regionLeastAlongwihFrequency),
     datasets: [
       {
-        data: [30, 40, 30],
+        data: Object.values(regionLeastAlongwihFrequency),
         backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
         hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
       },
@@ -16,8 +22,8 @@ const PieChart = () => {
   };
 
   return (
-    <div>
-      <h2>Pie Chart Example</h2>
+    <div style={{ textAlign: "center" }}>
+      <h2>Region</h2>
       <Pie data={data} />
     </div>
   );
