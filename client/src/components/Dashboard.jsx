@@ -3,6 +3,7 @@ import AppContext from "../context/appcontext.jsx";
 import Filter from "./Filter.jsx";
 import BarChart from "./Barchart.jsx";
 import DoughnutChart from "./Doughnut.jsx";
+import WorldMap from "./Scatter.jsx";
 
 const Dashboard = () => {
   const context = useContext(AppContext);
@@ -49,8 +50,7 @@ const Dashboard = () => {
         <BarChart />
 
         <DoughnutChart />
-
-        {/* <ScatterChart data={data} /> */}
+        <WorldMap />
       </div>
     </div>
   );
