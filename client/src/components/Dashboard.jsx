@@ -20,12 +20,15 @@ const Dashboard = () => {
     country,
     filteredData,
     generateTopicFrequency,
+    generateCountryFrequency,
+    countryLeastAlongwihFrequency,
   } = context;
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     getDatainArray();
     generateTopicFrequency();
+    generateCountryFrequency();
   }, [filteredData]);
 
   return (
@@ -47,7 +50,10 @@ const Dashboard = () => {
         <Filter option={pestle} type="pestle" />
         <Filter option={source} type="source" />
         <Filter option={country} type="country" />
-        {console.log("country", country)}
+        {console.log(
+          "countryLeastAlongwihFrequency",
+          countryLeastAlongwihFrequency
+        )}
 
         <BarChart />
         <PieChart />
