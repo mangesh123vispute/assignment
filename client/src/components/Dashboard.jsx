@@ -69,6 +69,7 @@ const Dashboard = () => {
           <Filter option={country} type="country" />
         </div>
       </div>
+
       <div className="visualizations-container">
         <BarChart />
         <br />
