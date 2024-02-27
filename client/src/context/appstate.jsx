@@ -194,7 +194,9 @@ const AppState = (props) => {
 
   const getDatainArray = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/data");
+      const response = await axios.get(
+        "https://assignment-dod7.onrender.com/api/data"
+      );
       const fetchedData = response.data;
 
       setData(fetchedData);
