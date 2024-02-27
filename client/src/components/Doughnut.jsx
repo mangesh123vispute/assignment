@@ -6,8 +6,14 @@ const DoughnutChart = () => {
   const context = useContext(AppContext);
   const { topicleastAlongwihFrequency } = context;
   const chartRef = useRef(null);
-  const data = Object.values(topicleastAlongwihFrequency);
-  const labels = Object.keys(topicleastAlongwihFrequency);
+  const data =
+    Object.values(topicleastAlongwihFrequency).length == 0
+      ? [100]
+      : Object.values(topicleastAlongwihFrequency);
+  const labels =
+    Object.keys(topicleastAlongwihFrequency).length == 0
+      ? ["No Topic"]
+      : Object.keys(topicleastAlongwihFrequency);
 
   useEffect(() => {
     const doughnutChart = new Chart(chartRef.current, {
@@ -35,9 +41,14 @@ const DoughnutChart = () => {
           },
         ],
       },
+
       options: {
         responsive: true,
         maintainAspectRatio: false,
+
+        plugins: {
+          legend: false,
+        },
       },
     });
 
@@ -49,16 +60,13 @@ const DoughnutChart = () => {
   return (
     <div
       style={{
-        width: "auto",
+        textAlign: "center",
         height: "auto",
+        width: "auto",
+        margin: "auto",
         border: "1px solid #ccc",
-        padding: "10px",
-        margin: "10px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
         borderRadius: "5px",
-        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+        padding: "20px",
       }}
     >
       <canvas ref={chartRef} />

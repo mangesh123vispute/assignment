@@ -91,7 +91,7 @@ const Filter = (props) => {
     <>
       <div className="dropdown " style={{ display: "flex" }}>
         <button
-          className="btn btn-secondary dropdown-toggle"
+          className="btn btn-primary dropdown-toggle "
           type="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"

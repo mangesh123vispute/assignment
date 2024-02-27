@@ -67,11 +67,17 @@ const BarChart = () => {
 
   return (
     <>
+      <h1 style={{ textAlign: "center", marginBottom: "10px" }}>
+        Filtered Data
+      </h1>
       <Search />
       <br />
       <br />
       <br />
       <br />
+      <h1 style={{ textAlign: "center", marginBottom: "10px" }}>
+        Selected Data{" "}
+      </h1>
       <div
         style={{
           maxWidth: "1000px",
@@ -88,7 +94,7 @@ const BarChart = () => {
           Title:{" "}
           {selectedItem.title
             ? selectedItem.title
-            : "No Title ,Select an item first"}
+            : "No Title ,First Filter Data and Select Data you want to visualize"}
           <p
             style={{
               fontSize: "14px",

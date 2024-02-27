@@ -5,8 +5,10 @@ import AppContext from "../context/appcontext.jsx";
 
 const WorldMap = () => {
   const context = useContext(AppContext);
-  const { SelectedCountryLongitudeAndLogitude } = context;
-
+  const { SelectedCountryLongitudeAndLogitude, countryLeastAlongwihFrequency } =
+    context;
+  console.log(countryLeastAlongwihFrequency);
+  console.log(SelectedCountryLongitudeAndLogitude);
   const svgRef = useRef(null);
 
   const sampleData = SelectedCountryLongitudeAndLogitude;
@@ -60,7 +62,7 @@ const WorldMap = () => {
           .data(sampleData)
           .enter()
           .append("circle")
-          .attr("r", 2) // Increase the radius of the circles
+          .attr("r", 5) // Increase the radius of the circles
           .attr("fill", "#40E0D0") // Adjust point color as needed
           .attr("stroke", "#000")
           .attr("stroke-width", 1)
@@ -69,6 +71,7 @@ const WorldMap = () => {
             return coordinates ? `translate(${coordinates})` : null;
           })
           .append("title")
+          .append("frequency")
           .text((d) => d.name);
       })
       .catch((error) => {
@@ -77,14 +80,23 @@ const WorldMap = () => {
   }, [SelectedCountryLongitudeAndLogitude]);
 
   return (
-    <svg
-      id="world-map"
-      ref={svgRef}
-      width="800"
-      height="500"
-      viewBox="0 0 800 500"
-      style={{ border: "1px solid #ccc", borderRadius: "5px", padding: "20px" }}
-    ></svg>
+    <div>
+      <h1 style={{ textAlign: "center", marginBottom: "20px" }}>
+        Countries friquency on The world Map
+      </h1>
+      <svg
+        id="world-map"
+        ref={svgRef}
+        width="800"
+        height="500"
+        viewBox="0 0 800 500"
+        style={{
+          border: "1px solid #ccc",
+          borderRadius: "5px",
+          padding: "20px",
+        }}
+      ></svg>
+    </div>
   );
 };
 

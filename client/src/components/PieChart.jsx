@@ -7,18 +7,28 @@ import { useContext } from "react";
 const PieChart = () => {
   const context = useContext(AppContext);
   const { regionLeastAlongwihFrequency } = context;
-  console.log("regionLeastAlongwihFrequency", regionLeastAlongwihFrequency);
 
   // Sample data for the pie chart
   const data = {
-    labels: Object.keys(regionLeastAlongwihFrequency),
+    labels:
+      Object.keys(regionLeastAlongwihFrequency).length == 0
+        ? ["No Region"]
+        : Object.keys(regionLeastAlongwihFrequency),
     datasets: [
       {
-        data: Object.values(regionLeastAlongwihFrequency),
+        data:
+          Object.values(regionLeastAlongwihFrequency).length == 0
+            ? [100]
+            : Object.values(regionLeastAlongwihFrequency),
         backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
         hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
       },
     ],
+  };
+  const options = {
+    plugins: {
+      legend: false,
+    },
   };
 
   return (
@@ -33,8 +43,7 @@ const PieChart = () => {
         padding: "20px",
       }}
     >
-      <h2>Region</h2>
-      <Pie data={data} />
+      <Pie data={data} options={options} />
     </div>
   );
 };

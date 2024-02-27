@@ -32,7 +32,7 @@ const Search = () => {
       region: item.region ? item.region : "N/A",
       action: (
         <button
-          className="btn btn-primary btn-sm"
+          className="btn btn-info btn-sm"
           onClick={() => handleSelect(item)}
         >
           Select

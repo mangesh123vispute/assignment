@@ -49,6 +49,7 @@ const AppState = (props) => {
       );
 
       if (matchingObject) {
+        matchingObject.frequency = countryLeastAlongwihFrequency[city];
         selectedCities.push(matchingObject);
       }
     });
@@ -234,43 +235,45 @@ const AppState = (props) => {
   //& and storing it into the data
   const filter = async () => {
     try {
-      const FilteredDataBasedOnEndYear = data.filter((item) =>
-        SelectedendYears.includes(item.end_year)
+      const filteredDataBasedOnEndYear = new Set(
+        data.filter((item) => SelectedendYears.includes(item.end_year))
       );
 
-      const FilteredDataBasedOnTopic = data.filter((item) =>
-        SelectedTopic.includes(item.topic)
-      );
-      const FilteredDataBasedOnSector = data.filter((item) =>
-        SelectedSector.includes(item.sector)
-      );
-      const FilteredDataBasedOnRegion = data.filter((item) =>
-        SelectedRegion.includes(item.region)
-      );
-      const FilteredDataBasedOnPestle = data.filter((item) =>
-        SelectedPestle.includes(item.pestle)
-      );
-      const FilteredDataBasedOnSource = data.filter((item) =>
-        SelectedSource.includes(item.source)
+      const filteredDataBasedOnTopic = new Set(
+        data.filter((item) => SelectedTopic.includes(item.topic))
       );
 
-      const FilteredDataBasedOnCountry = data.filter((item) =>
-        SelectedCountry.includes(item.country)
+      const filteredDataBasedOnSector = new Set(
+        data.filter((item) => SelectedSector.includes(item.sector))
       );
 
-      setFilteredData((prevFilteredData) => {
-        const uniqueValuesSet = new Set([
-          ...prevFilteredData,
-          ...FilteredDataBasedOnEndYear,
-          ...FilteredDataBasedOnTopic,
-          ...FilteredDataBasedOnSector,
-          ...FilteredDataBasedOnRegion,
-          ...FilteredDataBasedOnPestle,
-          ...FilteredDataBasedOnSource,
-          ...FilteredDataBasedOnCountry,
-        ]);
-        return Array.from(uniqueValuesSet);
-      });
+      const filteredDataBasedOnRegion = new Set(
+        data.filter((item) => SelectedRegion.includes(item.region))
+      );
+
+      const filteredDataBasedOnPestle = new Set(
+        data.filter((item) => SelectedPestle.includes(item.pestle))
+      );
+
+      const filteredDataBasedOnSource = new Set(
+        data.filter((item) => SelectedSource.includes(item.source))
+      );
+
+      const filteredDataBasedOnCountry = new Set(
+        data.filter((item) => SelectedCountry.includes(item.country))
+      );
+
+      const mergedSet = new Set([
+        ...filteredDataBasedOnEndYear,
+        ...filteredDataBasedOnTopic,
+        ...filteredDataBasedOnSector,
+        ...filteredDataBasedOnRegion,
+        ...filteredDataBasedOnPestle,
+        ...filteredDataBasedOnSource,
+        ...filteredDataBasedOnCountry,
+      ]);
+
+      setFilteredData(Array.from(mergedSet));
     } catch (error) {
       console.error("Error filtering data:", error);
     }
